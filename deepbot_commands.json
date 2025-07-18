@@ -1,0 +1,182 @@
+{
+  "commands": [
+    {
+      "name": "!xyzs",
+      "response": "$(user), you have $(getuservar $(user) xyzs 0) xyzs!",
+      "permission": "Everyone",
+      "cooldown": 5
+    },
+    {
+      "name": "!send_xyzs",
+      "response": "$(if $(arg1) $(if $(arg2) $(if $(>=$ $(getuservar $(user) xyzs 0) $(arg2)) $(setuservar $(user) xyzs $(calc $(getuservar $(user) xyzs 0) - $(arg2))) $(setuservar $(tolower $(arg1)) xyzs $(calc $(getuservar $(tolower $(arg1)) xyzs 0) + $(arg2))) $(user) sent $(arg2) xyzs to $(tolower $(arg1))! 🎉 You don't have enough xyzs!) Usage: !send_xyzs [username] [amount]) Usage: !send_xyzs [username] [amount])",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!queue",
+      "response": "$(user) joined the queue! Current position: $(addtolist queue $(user))",
+      "permission": "Everyone",
+      "cooldown": 30
+    },
+    {
+      "name": "!queue_list",
+      "response": "Current Queue: $(readfile queue.txt)",
+      "permission": "Everyone",
+      "cooldown": 5
+    },
+    {
+      "name": "!next",
+      "response": "$(if $(checkmod $(user)) Next in queue: $(removefromlist queue 1) Only mods can use this command)",
+      "permission": "Moderator",
+      "cooldown": 5
+    },
+    {
+      "name": "!slots",
+      "response": "$(if $(>=$ $(getuservar $(user) xyzs 0) $(if $(arg1) $(arg1) 5)) $(slots $(if $(arg1) $(arg1) 5)) You don't have enough xyzs for that bet!)",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!8ball",
+      "response": "🎱 $(randomchoice Yes!|No!|Maybe...|Definitely!|Ask again later.|I don't think so.|Absolutely!|Not today.|100%!|Never!)",
+      "permission": "Everyone",
+      "cooldown": 5
+    },
+    {
+      "name": "!roulette",
+      "response": "$(if $(==$ $(random 1 6) 1) $(user) spun the roulette... 💥 Oops! You're out! $(user) spun the roulette... You're safe!)",
+      "permission": "Everyone",
+      "cooldown": 15
+    },
+    {
+      "name": "!uptime",
+      "response": "Stream uptime: $(uptime)",
+      "permission": "Everyone",
+      "cooldown": 5
+    },
+    {
+      "name": "!discord",
+      "response": "Join our Discord: https://discord.gg/2WAHvEW9",
+      "permission": "Everyone",
+      "cooldown": 30
+    },
+    {
+      "name": "!lurk",
+      "response": "$(user) is now lurking. Stay awesome! 👀",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!unlurk",
+      "response": "Welcome back, $(user)! You were missed!",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!hug",
+      "response": "$(if $(arg1) $(user) gives $(arg1) a warm hug! 🤗 $(user) sends a big hug to everyone! 🤗)",
+      "permission": "Everyone",
+      "cooldown": 5
+    },
+    {
+      "name": "!joke",
+      "response": "$(randomchoice Why did the streamer cross the road? To get more viewers!|Why do programmers prefer dark mode? Because light attracts bugs!|Why was the math book sad? It had too many problems.)",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!fact",
+      "response": "Did you know? $(randomchoice Twitch was launched in 2011.|Python is named after Monty Python.|The first emote on Twitch was Kappa.|xyzBOT is the coolest bot!)",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!meme",
+      "response": "Meme of the day: $(randomchoice Kappa|PogChamp|FeelsGoodMan|PepeLaugh|OMEGALUL|KEKW|PepeHands)",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!shoutout",
+      "response": "$(if $(arg1) Shoutout to $(arg1)! Check them out at https://twitch.tv/$(arg1) Usage: !shoutout [username])",
+      "permission": "Moderator",
+      "cooldown": 30
+    },
+    {
+      "name": "!addvip",
+      "response": "$(if $(checkmod $(user)) $(if $(arg1) $(addtolist vips $(tolower $(arg1))) $(tolower $(arg1)) is now a VIP! 🌟 Usage: !addvip [username]) Only mods can add VIPs)",
+      "permission": "Moderator",
+      "cooldown": 5
+    },
+    {
+      "name": "!removevip",
+      "response": "$(if $(checkmod $(user)) $(if $(arg1) $(removefromlist vips $(tolower $(arg1))) $(tolower $(arg1)) is no longer a VIP. Usage: !removevip [username]) Only mods can remove VIPs)",
+      "permission": "Moderator",
+      "cooldown": 5
+    },
+    {
+      "name": "!vips",
+      "response": "🌟 VIPs: $(readfile vips.txt)",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!top_xyzs",
+      "response": "💰 Top xyzs: $(toplist xyzs 5)",
+      "permission": "Everyone",
+      "cooldown": 10
+    },
+    {
+      "name": "!give_xyzs",
+      "response": "$(if $(==$ $(tolower $(user)) xyzdzn) $(if $(arg1) $(if $(arg2) $(setuservar $(tolower $(arg1)) xyzs $(calc $(getuservar $(tolower $(arg1)) xyzs 0) + $(arg2))) $(tolower $(arg1)) received $(arg2) xyzs! Usage: !give_xyzs [username] [amount]) Usage: !give_xyzs [username] [amount]) Only the streamer can give xyzs)",
+      "permission": "Broadcaster",
+      "cooldown": 5
+    },
+    {
+      "name": "!ban",
+      "response": "$(if $(checkmod $(user)) $(if $(arg1) /ban $(tolower $(arg1)) $(args 2+) $(tolower $(arg1)) has been banned. Usage: !ban [username] [reason]) Only mods can ban users)",
+      "permission": "Moderator",
+      "cooldown": 5
+    },
+    {
+      "name": "!timeout",
+      "response": "$(if $(checkmod $(user)) $(if $(arg1) $(if $(arg2) /timeout $(tolower $(arg1)) $(arg2) $(args 3+) $(tolower $(arg1)) has been timed out for $(arg2) seconds. Usage: !timeout [username] [seconds] [reason]) Usage: !timeout [username] [seconds] [reason]) Only mods can timeout users)",
+      "permission": "Moderator",
+      "cooldown": 5
+    },
+    {
+      "name": "!clear_queue",
+      "response": "$(if $(checkmod $(user)) $(clearlist queue) Queue cleared! Only mods can clear the queue)",
+      "permission": "Moderator",
+      "cooldown": 5
+    },
+    {
+      "name": "!stats",
+      "response": "Bot Stats: Commands used: $(getglobalvar commands_used 0), Active users: $(getglobalvar active_users 0)",
+      "permission": "Everyone",
+      "cooldown": 30
+    }
+  ],
+  "timers": [
+    {
+      "name": "Discord Timer",
+      "message": "Join my Discord!! https://discord.gg/2WAHvEW9",
+      "interval": 900,
+      "enabled": true
+    }
+  ],
+  "variables": [
+    {
+      "name": "xyzs",
+      "type": "user",
+      "default": 0,
+      "description": "User currency system"
+    },
+    {
+      "name": "xp",
+      "type": "user", 
+      "default": 0,
+      "description": "User experience points"
+    }
+  ]
+}

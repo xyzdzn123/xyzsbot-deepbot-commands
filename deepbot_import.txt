@@ -1,0 +1,177 @@
+# DeepBot Commands Import File
+# Generated from xyzBOT
+# Import Instructions: 
+# 1. Open DeepBot
+# 2. Go to Commands -> Import
+# 3. Select this file
+# 4. Choose import options
+# 5. Apply settings
+
+[COMMANDS]
+
+!xyzs
+Response: $(user), you have $(getuservar $(user) xyzs 0) xyzs!
+Permission: Everyone
+Cooldown: 5
+Enabled: Yes
+
+!send_xyzs  
+Response: $(if $(arg1) $(if $(arg2) $(if $(>=$ $(getuservar $(user) xyzs 0) $(arg2)) $(setuservar $(user) xyzs $(calc $(getuservar $(user) xyzs 0) - $(arg2))) $(setuservar $(tolower $(arg1)) xyzs $(calc $(getuservar $(tolower $(arg1)) xyzs 0) + $(arg2))) $(user) sent $(arg2) xyzs to $(tolower $(arg1))! 🎉 You don't have enough xyzs!) Usage: !send_xyzs [username] [amount]) Usage: !send_xyzs [username] [amount])
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!queue
+Response: $(user) joined the queue! Position: $(addtolist queue $(user))
+Permission: Everyone  
+Cooldown: 30
+Enabled: Yes
+
+!queue_list
+Response: Current Queue: $(readlist queue)
+Permission: Everyone
+Cooldown: 5
+Enabled: Yes
+
+!next
+Response: $(if $(checkmod $(user)) Next in queue: $(removefromlist queue 1) Only mods can use this command)
+Permission: Moderator
+Cooldown: 5
+Enabled: Yes
+
+!slots
+Response: $(if $(>=$ $(getuservar $(user) xyzs 0) $(if $(arg1) $(arg1) 5)) $(slots $(if $(arg1) $(arg1) 5)) You don't have enough xyzs for that bet!)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!8ball
+Response: 🎱 $(randomchoice Yes!|No!|Maybe...|Definitely!|Ask again later.|I don't think so.|Absolutely!|Not today.|100%!|Never!)
+Permission: Everyone
+Cooldown: 5
+Enabled: Yes
+
+!roulette
+Response: $(if $(==$ $(random 1 6) 1) $(user) spun the roulette... 💥 Oops! You're out! $(user) spun the roulette... You're safe!)
+Permission: Everyone
+Cooldown: 15
+Enabled: Yes
+
+!discord
+Response: Join our Discord: https://discord.gg/2WAHvEW9
+Permission: Everyone
+Cooldown: 30
+Enabled: Yes
+
+!lurk
+Response: $(user) is now lurking. Stay awesome! 👀
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!unlurk
+Response: Welcome back, $(user)! You were missed!
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!hug
+Response: $(if $(arg1) $(user) gives $(arg1) a warm hug! 🤗 $(user) sends a big hug to everyone! 🤗)
+Permission: Everyone
+Cooldown: 5
+Enabled: Yes
+
+!joke
+Response: $(randomchoice Why did the streamer cross the road? To get more viewers!|Why do programmers prefer dark mode? Because light attracts bugs!|Why was the math book sad? It had too many problems.)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!fact
+Response: Did you know? $(randomchoice Twitch was launched in 2011.|Python is named after Monty Python.|The first emote on Twitch was Kappa.|xyzBOT is the coolest bot!)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!meme
+Response: Meme of the day: $(randomchoice Kappa|PogChamp|FeelsGoodMan|PepeLaugh|OMEGALUL|KEKW|PepeHands)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!shoutout
+Response: $(if $(arg1) Shoutout to $(arg1)! Check them out at https://twitch.tv/$(arg1) Usage: !shoutout [username])
+Permission: Moderator
+Cooldown: 30
+Enabled: Yes
+
+!addvip
+Response: $(if $(checkmod $(user)) $(if $(arg1) $(addtolist vips $(tolower $(arg1))) $(tolower $(arg1)) is now a VIP! 🌟 Usage: !addvip [username]) Only mods can add VIPs)
+Permission: Moderator
+Cooldown: 5
+Enabled: Yes
+
+!removevip
+Response: $(if $(checkmod $(user)) $(if $(arg1) $(removefromlist vips $(tolower $(arg1))) $(tolower $(arg1)) is no longer a VIP. Usage: !removevip [username]) Only mods can remove VIPs)
+Permission: Moderator
+Cooldown: 5
+Enabled: Yes
+
+!vips
+Response: 🌟 VIPs: $(readlist vips)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!top_xyzs
+Response: 💰 Top xyzs: $(toplist xyzs 5)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+!give_xyzs
+Response: $(if $(==$ $(tolower $(user)) xyzdzn) $(if $(arg1) $(if $(arg2) $(setuservar $(tolower $(arg1)) xyzs $(calc $(getuservar $(tolower $(arg1)) xyzs 0) + $(arg2))) $(tolower $(arg1)) received $(arg2) xyzs! Usage: !give_xyzs [username] [amount]) Usage: !give_xyzs [username] [amount]) Only the streamer can give xyzs)
+Permission: Broadcaster
+Cooldown: 5
+Enabled: Yes
+
+!uptime
+Response: Stream uptime: $(uptime)
+Permission: Everyone
+Cooldown: 5
+Enabled: Yes
+
+!profile
+Response: Profile for $(user): Level $(calc $(getuservar $(user) xp 0) / 100), XP $(getuservar $(user) xp 0), xyzs $(getuservar $(user) xyzs 0)
+Permission: Everyone
+Cooldown: 10
+Enabled: Yes
+
+[TIMERS]
+
+Discord Timer
+Message: Join my Discord!! https://discord.gg/2WAHvEW9
+Interval: 900
+Enabled: Yes
+
+[VARIABLES]
+
+xyzs
+Type: User
+Default: 0
+Description: User currency system
+
+xp  
+Type: User
+Default: 0
+Description: User experience points
+
+active_users
+Type: Global
+Default: 0
+Description: Count of active users
+
+commands_used
+Type: Global  
+Default: 0
+Description: Total commands used counter
