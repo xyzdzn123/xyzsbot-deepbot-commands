@@ -1,12 +1,13 @@
 # xyzBOT Commands for DeepBot
 
-This repository contains command exports from xyzBOT that can be imported into DeepBot.
+This repository contains command exports from xyzBOT that can be imported into DeepBot, plus the main Discord bot with livestream notifications.
 
 ## Files included:
 
 - `deepbot_commands.json` - JSON format for API integration
 - `deepbot_import.txt` - Text format for manual import
-- `bot.py` - Original Python bot source code
+- `bot.py` - Discord bot with livestream notification functionality
+- `README.md` - Full Discord bot documentation
 
 ## Import Instructions:
 
